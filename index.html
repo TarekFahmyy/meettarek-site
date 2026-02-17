@@ -428,9 +428,10 @@ If something doesn't meet expectations, we'll identify the gap immediately and a
     }
   }
 
-  document.addEventListener("click", gate, true);
-  document.addEventListener("auxclick", gate, true);
-  document.addEventListener("keydown", function (evt) {
+  // Capture on window so this runs before Framer's document-level link handlers.
+  window.addEventListener("click", gate, true);
+  window.addEventListener("auxclick", gate, true);
+  window.addEventListener("keydown", function (evt) {
     if (evt.key === "Enter") gate(evt);
   }, true);
 })();
@@ -537,14 +538,21 @@ If something doesn't meet expectations, we'll identify the gap immediately and a
       var txt = (el.textContent || "").replace(/\s+/g, " ").trim();
       var href = (el.getAttribute("href") || "").trim();
       var hasLabel = txt.length > 1 || !!el.getAttribute("aria-label");
+      var isProjectTarget = href.indexOf("/projects") !== -1 || href === "./projects";
       var keep =
-        (hasLabel && href !== "" && href !== "./projects") ||
+        (hasLabel && href !== "") ||
+        isProjectTarget ||
         href.indexOf("mailto:") === 0 ||
         href.indexOf("tel:") === 0 ||
         href.indexOf("http") === 0 ||
         href.indexOf("#") === 0 ||
         el.getAttribute("data-mailto-cta") === "1";
-      if (keep) return;
+      if (keep) {
+        el.style.pointerEvents = "";
+        el.removeAttribute("tabindex");
+        el.removeAttribute("data-disabled-overlay-link");
+        return;
+      }
       var r = el.getBoundingClientRect();
       var ratio = (r.width * r.height) / (vw * vh);
       if (ratio > 0.08 || href === "" || href === "./projects") {
@@ -557,9 +565,68 @@ If something doesn't meet expectations, we'll identify the gap immediately and a
 
   injectStyles();
   disableOversizedInvisibleLinks();
+
+  function syncProcessLineProgress() {
+    var parts = Array.from(document.querySelectorAll(".framer-DaeWV.framer-qoftit"));
+    if (!parts.length) return;
+    var topDoc = Infinity;
+    var bottomDoc = -Infinity;
+    var lineX = null;
+    for (var i = 0; i < parts.length; i++) {
+      var r = parts[i].getBoundingClientRect();
+      var t = r.top + window.scrollY;
+      var b = r.bottom + window.scrollY;
+      if (t < topDoc) topDoc = t;
+      if (b > bottomDoc) bottomDoc = b;
+      if (lineX === null) lineX = r.left + window.scrollX + r.width / 2;
+    }
+    if (!isFinite(topDoc) || !isFinite(bottomDoc) || bottomDoc <= topDoc || lineX === null) return;
+
+    // Use a lower viewport anchor so orange appears as soon as the line enters view.
+    var viewPoint = window.scrollY + window.innerHeight * 0.92;
+    var total = bottomDoc - topDoc;
+    var h = Math.max(0, Math.min(total, viewPoint - topDoc));
+
+    var orange = document.querySelector(".framer-1mizipe");
+    if (orange) {
+      orange.style.height = h.toFixed(2) + "px";
+    }
+
+    var overlay = document.getElementById("process-progress-line-overlay");
+    if (!overlay) {
+      overlay = document.createElement("div");
+      overlay.id = "process-progress-line-overlay";
+      overlay.style.position = "absolute";
+      overlay.style.pointerEvents = "none";
+      overlay.style.zIndex = "3";
+      overlay.style.width = "2px";
+      overlay.style.background = "rgb(255, 77, 0)";
+      document.body.appendChild(overlay);
+    }
+    overlay.style.left = (lineX - 1).toFixed(2) + "px";
+    overlay.style.top = topDoc.toFixed(2) + "px";
+    overlay.style.height = h.toFixed(2) + "px";
+  }
+
+  var ticking = false;
+  function onScrollLike() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      ticking = false;
+      syncProcessLineProgress();
+    });
+  }
+
+  syncProcessLineProgress();
+  window.addEventListener("scroll", onScrollLike, { passive: true });
+  window.addEventListener("resize", onScrollLike, { passive: true });
+  window.addEventListener("load", onScrollLike, { passive: true });
+
   window.addEventListener("resize", disableOversizedInvisibleLinks, { passive: true });
   var mo = new MutationObserver(function () {
     disableOversizedInvisibleLinks();
+    onScrollLike();
   });
   mo.observe(document.documentElement, { childList: true, subtree: true });
 })();
