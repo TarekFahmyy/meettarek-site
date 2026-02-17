@@ -339,6 +339,6 @@ This service design effort strengthened USAID’s ability to scale the innovatio
 </script>
 
 
-<script id="projects-direct-guard-v1">(function(){var KEY="projects_access_ok_v3";var PASS="tarekbackstage";function ok(){if(sessionStorage.getItem(KEY)==="1") return true;var v=window.prompt("Enter password to access Projects:");if(v===PASS){sessionStorage.setItem(KEY,"1");return true;}if(v!==null&&v!=="") window.alert("Wrong password.");return false;}if(!ok()){window.location.replace("/");}})();</script>
+<script id="projects-direct-guard-v2">(function(){var PASS="tarekbackstage";function ok(){var v=window.prompt("Enter password to access Projects:");if(v===PASS){return true;}window.location.replace("/");return false;}ok();})();</script>
 </body>
 </html>
