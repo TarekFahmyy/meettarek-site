@@ -365,75 +365,97 @@ If something doesn't meet expectations, we'll identify the gap immediately and a
 
 
 
-<script id="projects-access-gate-v2">
+<script id="projects-access-gate-v3">
 (function () {
-  var KEY = "projects_access_ok_v2";
+  var KEY = "projects_access_ok_v3";
   var PASS = "tarekbackstage";
-  var LABELS = ["selected projects", "projects library", "ai & automation", "strategy & innovation", "direct social impact", "experience design"];
 
-  function norm(s) {
-    return (s || "").toLowerCase().replace(/\s+/g, " ").trim();
-  }
-
-  function isTargetLabel(text) {
-    var t = norm(text);
-    for (var i = 0; i < LABELS.length; i++) {
-      if (t.indexOf(LABELS[i]) !== -1) return true;
+  function normPath(href) {
+    if (!href) return "";
+    try {
+      var u = new URL(href, window.location.href);
+      return (u.pathname || "").toLowerCase();
+    } catch (e) {
+      return String(href).toLowerCase();
     }
-    return false;
   }
 
-  function shouldGateFromEvent(evt) {
+  function isProjectTarget(href) {
+    var p = normPath(href);
+    return p === "/projects" || p.indexOf("/projects/") === 0;
+  }
+
+  function protectElement(el) {
+    if (!(el instanceof Element)) return;
+    var href = el.getAttribute("href");
+    var nested = el.getAttribute("data-nested-link");
+    var target = "";
+
+    if (href && isProjectTarget(href)) target = href;
+    if (!target && nested && isProjectTarget(nested)) target = nested;
+    if (!target) return;
+
+    el.setAttribute("data-project-protected", "1");
+    el.setAttribute("data-project-target", target);
+    if (href) el.setAttribute("href", "javascript:void(0)");
+    if (nested) el.removeAttribute("data-nested-link");
+    el.style.cursor = "pointer";
+  }
+
+  function patchProtectedLinks() {
+    document.querySelectorAll("a[href], [data-nested-link]").forEach(protectElement);
+  }
+
+  function getProtectedTargetFromEvent(evt) {
     var path = evt.composedPath ? evt.composedPath() : [];
     for (var i = 0; i < path.length; i++) {
       var node = path[i];
       if (!node || node === document || node === window) continue;
       if (!(node instanceof Element)) continue;
-      var link = node.closest("a[href], [data-nested-link]");
-      if (!link) continue;
-      var href = getDestination(link).toLowerCase();
-      var text = norm(node.textContent || "");
-      if (href.indexOf("/projects") !== -1 || href.indexOf("./projects") !== -1) return link;
-      if (!isTargetLabel(text)) continue;
-      return link;
+      var protectedNode = node.closest("[data-project-protected='1']");
+      if (!protectedNode) continue;
+      var target = protectedNode.getAttribute("data-project-target");
+      if (isProjectTarget(target)) return target;
     }
-    return null;
+    return "";
   }
 
-  function getDestination(el) {
-    if (!el) return "/projects";
-    var href = el.getAttribute && el.getAttribute("href");
-    if (href && href !== "#" && href !== "./#") return href;
-    var nested = el.getAttribute && el.getAttribute("data-nested-link");
-    if (nested) return nested;
-    return "/projects";
-  }
-
-  function gate(evt) {
-    var target = shouldGateFromEvent(evt);
-    if (!target) return;
-
-    if (sessionStorage.getItem(KEY) === "1") return;
-
+  function stop(evt) {
     evt.preventDefault();
     evt.stopPropagation();
     if (evt.stopImmediatePropagation) evt.stopImmediatePropagation();
+  }
 
+  function requirePassword() {
+    if (sessionStorage.getItem(KEY) === "1") return true;
     var value = window.prompt("Enter password to access Projects:");
     if (value === PASS) {
       sessionStorage.setItem(KEY, "1");
-      window.location.href = getDestination(target);
-    } else if (value !== null) {
-      window.alert("Wrong password.");
+      return true;
     }
+    if (value !== null && value !== "") window.alert("Wrong password.");
+    return false;
   }
 
-  // Capture on window so this runs before Framer's document-level link handlers.
+  function gate(evt) {
+    var target = getProtectedTargetFromEvent(evt);
+    if (!target) return;
+    stop(evt);
+    if (!requirePassword()) return;
+    window.location.assign(target);
+  }
+
+  patchProtectedLinks();
   window.addEventListener("click", gate, true);
   window.addEventListener("auxclick", gate, true);
   window.addEventListener("keydown", function (evt) {
     if (evt.key === "Enter") gate(evt);
   }, true);
+
+  var mo = new MutationObserver(function () {
+    patchProtectedLinks();
+  });
+  mo.observe(document.documentElement, { childList: true, subtree: true });
 })();
 </script>
 
