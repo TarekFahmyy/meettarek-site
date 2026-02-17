@@ -1,0 +1,71 @@
+{
+  "generated_at_epoch": 1771341918,
+  "base_url": "https://meettarek.framer.website",
+  "page_count": 12,
+  "project_count": 10,
+  "internal_links_found": 12,
+  "external_assets_downloaded": 192,
+  "external_assets_failed": 0,
+  "internal_link_status": [
+    {
+      "url_path": "/",
+      "exists_local": true,
+      "local_path": "index.html"
+    },
+    {
+      "url_path": "/projects",
+      "exists_local": true,
+      "local_path": "projects/index.html"
+    },
+    {
+      "url_path": "/projects/bio-innovation",
+      "exists_local": true,
+      "local_path": "projects/bio-innovation/index.html"
+    },
+    {
+      "url_path": "/projects/circular-economy-bm",
+      "exists_local": true,
+      "local_path": "projects/circular-economy-bm/index.html"
+    },
+    {
+      "url_path": "/projects/city-services",
+      "exists_local": true,
+      "local_path": "projects/city-services/index.html"
+    },
+    {
+      "url_path": "/projects/digital-future",
+      "exists_local": true,
+      "local_path": "projects/digital-future/index.html"
+    },
+    {
+      "url_path": "/projects/digital-vultures",
+      "exists_local": true,
+      "local_path": "projects/digital-vultures/index.html"
+    },
+    {
+      "url_path": "/projects/india-digital-financial-inclusion",
+      "exists_local": true,
+      "local_path": "projects/india-digital-financial-inclusion/index.html"
+    },
+    {
+      "url_path": "/projects/sok-mara-sustainability-strategy",
+      "exists_local": true,
+      "local_path": "projects/sok-mara-sustainability-strategy/index.html"
+    },
+    {
+      "url_path": "/projects/usaid-asist-digital-records",
+      "exists_local": true,
+      "local_path": "projects/usaid-asist-digital-records/index.html"
+    },
+    {
+      "url_path": "/projects/vtt-mycelium-leather",
+      "exists_local": true,
+      "local_path": "projects/vtt-mycelium-leather/index.html"
+    },
+    {
+      "url_path": "/projects/witness-experince",
+      "exists_local": true,
+      "local_path": "projects/witness-experince/index.html"
+    }
+  ]
+}

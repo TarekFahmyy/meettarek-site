@@ -1,0 +1,135 @@
+{
+  "site": {
+    "name": "Tarek Fahmy",
+    "description": "Tarek Fahmy as a strategic consultant, transformation advisor, organizational designer and experience designer portfolio and case studies.",
+    "base_url": "https://meettarek.framer.website"
+  },
+  "projects": [
+    {
+      "slug": "bio-innovation",
+      "url": "/projects/bio-innovation",
+      "title": "Transforming TB Detection Through Bio Detection Innovation",
+      "year": "2015",
+      "services": [
+        "Health Service Design, Program Design, Ecosystem Mapping, Stakeholder Engagement, Process Optimization, Monitoring & Evaluation Support"
+      ],
+      "client": "USAID (APOPO)",
+      "team": "Innovation Expert (USAID), Public Health Specialists, APOPO Scientific Team, Local Clinic Stakeholders, Monitoring & Evaluation Unit",
+      "overview": "Tuberculosis remains one of the world\u2019s deadliest infectious diseases, especially in low-resource settings where diagnostic capacity is limited. USAID partnered with APOPO to accelerate early TB detection using an unexpected but highly effective, HeroRATs, African pouched rats trained to detect TB-positive sputum samples through scent. As the Innovation Expert on the USAID side, I supported the initiative by mapping the operational ecosystem, identifying workflow gaps between laboratories, clinics, and APOPO facilities, and helping design scalable service processes that could be adopted by public health partners. The goal was to create a reliable, repeatable, and community-centered diagnostic service model capable of identifying more TB cases faster and at a fraction of traditional costs."
+    },
+    {
+      "slug": "circular-economy-bm",
+      "url": "/projects/circular-economy-bm",
+      "title": "Advancing Circular Economy Business Models (Open Innovation Camp)",
+      "year": "2021",
+      "services": [
+        "Facilitation",
+        "Service Design",
+        "Research",
+        "Co-creation Leadership"
+      ],
+      "client": "Circle4Life",
+      "team": "Multidisciplinary team of service designers, researchers & circular economy industry specialists",
+      "overview": "The Innovation Camp brought together global circular economy professionals to test and strengthen the Circular Economy Business Model (CEBM). Over two intensive days, participants explored how sustainable consumption, reuse & recycling, and end-user co-creation can shape future-ready business models. My role was to design and facilitate high-impact sessions, guide multidisciplinary teams through structured decision-making, and ensure that each CEBM prototype was validated with experts from diverse industries\u2014including lighting, meat production, repair services, and energy. The result was a unified understanding of how circular design principles can translate into commercially viable, scalable, and environmentally responsible business strategies."
+    },
+    {
+      "slug": "city-services",
+      "url": "/projects/city-services",
+      "title": "Improving City Services for Helsinki\u2019s Diverse Communities",
+      "year": "2021",
+      "services": [
+        "User Research",
+        "Cultural Insights",
+        "Facilitation",
+        "Community Engagement"
+      ],
+      "client": "City of Helsinki (Kuudes)",
+      "team": "Service Designers & Researchers from Kuudes, City of Helsinki representatives, Role: Lead researcher for Arabic-speaking community",
+      "overview": "Helsinki is one of Europe\u2019s fastest-diversifying cities. Yet many residents, especially immigrants and non-native speakers, struggle to access or fully understand public services. Under the umbrella of Kuudes and with a brief from the City of Helsinki, we set out to deeply understand how Arabic-speaking residents experience municipal services, uncover barriers, and highlight gaps where service delivery does not meet community expectations. The goal: to build a foundation for more inclusive, accessible public services across the city of Helsinki."
+    },
+    {
+      "slug": "digital-future",
+      "url": "/projects/digital-future",
+      "title": "Reimagining Digital Future",
+      "year": "2021",
+      "services": [
+        "Service Design, User Research, Workshop Design & Facilitation, UX Strategy, Prototyping, Pitching."
+      ],
+      "client": "BMI Group",
+      "team": "Senior Service Designer, Senior Project Manager, Client lead, Data Analyst, UI Designer, Enterprise Solution Architect.",
+      "overview": "BMI Group, one of the world\u2019s largest roofing manufacturers, operated on systems that no longer reflected real work practices across its global markets. Employees relied heavily on manual workarounds and informal tools that existed outside official systems, creating inconsistency, inefficiency, and knowledge gaps. My role as Senior Service Designer was to uncover these hidden behaviors, align global teams around a unified workflow vision, and design the foundation for a new digital platform that supports real-world operations\u2014not just idealized processes."
+    },
+    {
+      "slug": "digital-vultures",
+      "url": "/projects/digital-vultures",
+      "title": "Vultures Mapping Illegal Dumps in Lima",
+      "year": "2016",
+      "services": [
+        "Service Design, Environmental Data Strategy, Digital Communications, Behaviour-Change Design, Stakeholder Engagement"
+      ],
+      "client": "USAID (Peruvian Ministry of Environment)",
+      "team": "Lead Service & Communications Designer (USAID), Environmental Policy Team, Peruvian Ministry of Environment Data & GIS Specialists, Creative / Media Team.",
+      "overview": "Lima produces thousands of tons of waste every day, and a significant share ends up in illegal dumps along rivers, roadsides, and informal areas, far from official landfills. Traditional monitoring systems couldn\u2019t keep up with the scale of the problem. Gallinazo Avisa (\u201cVultures Warn\u201d) took an unconventional path: equipping rescued black vultures with GPS trackers and GoPro cameras so they could help locate hidden garbage hotspots from the sky and feed that data into a live, public map. As the Innovation Expert on the USAID side, I worked at the intersection of technology, environment, and public engagement: shaping how vulture-generated data would be translated into actionable insights for authorities, and how the story would be told so that residents didn\u2019t just watch vultures fly, they understood the problem and felt invited to act."
+    },
+    {
+      "slug": "india-digital-financial-inclusion",
+      "url": "/projects/india-digital-financial-inclusion",
+      "title": "Digital Financial Inclusion Journey Mapping - India",
+      "year": "2019",
+      "services": [
+        "User Research, Journey Mapping, Stakeholder Engagement, Ecosystem Analysis, Financial Inclusion Strategy, Digital Payments Research, Value Chain Analysis, Gender-Focused Design, Community Engagement, Impact Assessment"
+      ],
+      "client": "USAID, mSTAR",
+      "team": "USAID mSTAR Project Team, FHI 360, IFMR-LEAD, Intellecap, Local Community Partners, Financial Sector Stakeholders, Government Representatives",
+      "overview": "Between 2014 and 2018, India embarked on one of the world's most ambitious financial inclusion initiatives, bringing over 330 million people into the formal financial sector. As part of USAID's commitment to support India's digital financial inclusion agenda, I contributed to comprehensive research examining how digital payments could catalyze meaningful financial inclusion for underserved populations across urban and rural India. This project combined macro-level ecosystem mapping with micro-level field research in Jaipur, Odisha, Maharashtra, and Jharkhand to understand the drivers and barriers of digital payment adoption among merchants and consumers, particularly focusing on women, rural communities, and low-income populations."
+    },
+    {
+      "slug": "sok-mara-sustainability-strategy",
+      "url": "/projects/sok-mara-sustainability-strategy",
+      "title": "Sustainability Communication Strategy, Sokos Hotels",
+      "year": "2023",
+      "services": [
+        "Service Design, Sustainability Strategy Support, Research & Insights, Persona & Scenario Design, Systems Thinking, Stakeholder Alignment"
+      ],
+      "client": "SOKOS Hotels / S Group (Finland)",
+      "team": "SOK Sustainability & Strategy Leadership, Miltton Sustainability Consultants, Retail Operations & Brand Stakeholders",
+      "overview": "SOK Mara leads retail operations for S Group, Finland\u2019s largest cooperative retailer, serving nearly 80% of Finnish households through brands such as Prisma, S-market, and Sale. In 2023, SOK updated its sustainability strategy to translate ambitious climate and responsibility commitments into concrete actions across stores, supply chains, and customer experiences. As Lead Service Designer, I supported the strategy by grounding sustainability ambitions in real human behavior. My work focused on research, insights, personas, and scenarios connecting customer expectations, employee realities, and operational constraints so the final strategy could move beyond targets and reports into everyday decision-making at scale."
+    },
+    {
+      "slug": "usaid-asist-digital-records",
+      "url": "/projects/usaid-asist-digital-records",
+      "title": "Paperless Records & Global Compliance Transformation",
+      "year": "",
+      "services": [
+        "Service Design, Digital Transformation, Change Management, Training & Enablement, Information Governance, Process Design"
+      ],
+      "client": "USAID (United States Agency for International Development)",
+      "team": "USAID Office of Acquisition & Assistance, Records Management Leadership, Global Mission AORs/CORs, IT and Policy Stakeholders",
+      "overview": "ASIST (Agency Secure Image and Storage Tracking) is USAID\u2019s official electronic records system for managing AOR and COR award files across missions worldwide. Mandated as the sole system of record, ASIST marked a fundamental shift from fragmented, paper-heavy practices to standardized, digital-first recordkeeping aligned with federal records law. I worked as an Innovation Expert and Digital Transformation Lead, shaping the service, processes, and adoption model that enabled more than 100 missions to move away from paper while remaining audit-ready, compliant, and operationally efficient. The work balanced strict federal governance with the realities of day-to-day work in diverse global contexts."
+    },
+    {
+      "slug": "vtt-mycelium-leather",
+      "url": "/projects/vtt-mycelium-leather",
+      "title": "Mycelium Leather Go-to-Market Strategy - VTT",
+      "year": "2022",
+      "services": [
+        "Service Design, Go-to-Market Strategy Support, Workshop Facilitation, Research & Insight Synthesis, Value Proposition Design, Service Packaging, Ecosystem Mapping"
+      ],
+      "client": "VTT Technical Research Centre of Finland",
+      "team": "VTT Mycelium Research Team, Material & Bioprocess Specialists, Designers, Commercial & IP Stakeholders, Consulting Partner Team",
+      "overview": "VTT had developed a scalable pathway for producing mycelium-based \u201cleather-like\u201d materials using industrially proven fermentation approaches, supported by experimentation to improve material performance and protect new innovations through IP. The challenge in 2022 wasn\u2019t only technical feasibility; it was translating breakthrough capability into a clear, customer-ready go-to-market model that different industries could understand, trust, and adopt. As Lead Service Designer, I assisted in shaping an NDA-safe commercialization narrative and service structure: clarifying who the offering is for, what problems it solves, and how a research organization can package deep-tech capabilities into actionable services, without overpromising, and without forcing a one-size-fits-all sales story."
+    },
+    {
+      "slug": "witness-experince",
+      "url": "/projects/witness-experince",
+      "title": "Designing the Witness Experience in the Finnish Courts",
+      "year": "2021",
+      "services": [
+        "Service Design, User Research, Co-creation, UX Design, Prototyping, Testing, Launch."
+      ],
+      "client": "Tuomioistuinvirasto (National Courts Administration Finland)",
+      "team": "Service Designera, Lawyers, Judges, Court Clerks, Interpreters",
+      "overview": "Although the Finnish legal system operates with strong democratic foundations, the experience of participating in it as a witness is often unclear, stressful, and fragmented. Witnesses frequently arrive without knowing their rights, their role, or what the day will look like. In partnership with the Finnish Court Administration (Tuomioistuinlaitos), our multidisciplinary team set out to deeply understand the lived experience of witnesses and design tools that would bring clarity, predictability, and emotional support into a traditionally rigid system. The project began as a research exploration and culminated in a real, implemented public-facing solution now used nationwide."
+    }
+  ]
+}
