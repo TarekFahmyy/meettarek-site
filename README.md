@@ -33,11 +33,18 @@ This will:
 2. Download external Framer/CDN assets.
 3. Rebuild `content/*.json` files.
 4. Rebuild `reports/integrity_report.json`.
+5. Apply SEO/GEO metadata + JSON-LD + contact link fixes.
 
 To rebuild offline-localized HTML (rewrites downloaded asset URLs to local paths):
 
 ```bash
 ./scripts/build_offline_html.py
+```
+
+To run only the SEO/GEO pass (without re-syncing):
+
+```bash
+./scripts/apply_seo_geo.py
 ```
 
 ## Current integrity status

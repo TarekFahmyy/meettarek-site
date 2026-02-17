@@ -4,6 +4,7 @@ import html
 import json
 import os
 import re
+import subprocess
 import sys
 import time
 from collections import deque
@@ -418,6 +419,14 @@ def main():
     print(f"Projects: {len(projects)}")
     print(f"Assets downloaded: {len(downloaded_assets)}")
     print(f"Assets failed: {len(failed_assets)}")
+
+    seo_script = root / "scripts" / "apply_seo_geo.py"
+    if seo_script.exists():
+        try:
+            subprocess.run([str(seo_script)], check=True)
+            print("SEO/GEO post-processing: done")
+        except Exception as exc:
+            print(f"WARN SEO/GEO post-processing failed: {exc}", file=sys.stderr)
 
 
 if __name__ == "__main__":
