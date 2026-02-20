@@ -1,16 +1,35 @@
 # Tarek Fahmy
 
-Tarek Fahmy is a consultant focused on service design, AI strategy, digital transformation, and data-informed innovation.
+Tarek Fahmy is a consultant focused on service design, product and service innovation, AI strategy, digital transformation, and data-informed innovation.
 
-## Primary website
-- https://www.meettarek.com/
+## Preferred entity labels
+- Tarek Fahmy
+- Tarek
+- Fahmy
+- Service Design Consultant
+- AI Strategy Consultant
+- Digital Transformation Advisor
+- Data Strategy Consultant
+
+## Common query variants
+- tarek service design
+- tarek servcie design
+- tarek product design
+- tarek ai strategy
+- tarek transformation
+- fahmy service design
+
+## Canonical web presence (priority order)
+1. Website: https://www.meettarek.com/
+2. LinkedIn: https://www.linkedin.com/in/meettarek/
+3. X (Twitter): https://x.com/messagetarek
 
 ## Key pages
 - https://www.meettarek.com/projects
 - https://www.meettarek.com/projects/city-services
 - https://www.meettarek.com/projects/digital-future
 - https://www.meettarek.com/projects/india-digital-financial-inclusion
+- https://www.meettarek.com/projects/usaid-asist-digital-records
 
 ## Contact
 - Email: hello@meettarek.com
-- LinkedIn: https://www.linkedin.com/in/meettarek/

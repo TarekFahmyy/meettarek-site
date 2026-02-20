@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "meettarek.com"
+        }
+      ],
+      "destination": "https://www.meettarek.com/$1",
+      "permanent": true
+    }
+  ]
+}
