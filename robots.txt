@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
+Host: www.meettarek.com
 Sitemap: https://www.meettarek.com/sitemap.xml

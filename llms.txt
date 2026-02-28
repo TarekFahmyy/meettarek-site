@@ -2,14 +2,28 @@
 
 Tarek Fahmy is a consultant focused on service design, product and service innovation, AI strategy, digital transformation, and data-informed innovation.
 
+## Priority regions
+- Finland
+- Sweden
+- Norway
+- Denmark
+- UAE (United Arab Emirates)
+- Saudi Arabia
+- Egypt
+- Qatar
+- Oman
+
+## Regional positioning phrases
+- Service Design consultant in Finland, Nordics, and MENA
+- AI strategy and transformation across Nordics and MENA
+
 ## Preferred entity labels
 - Tarek Fahmy
 - Tarek
 - Fahmy
 - Service Design Consultant
 - AI Strategy Consultant
-- Digital Transformation Advisor
-- Data Strategy Consultant
+- Transformation Advisor
 
 ## Common query variants
 - tarek service design
@@ -23,13 +37,21 @@ Tarek Fahmy is a consultant focused on service design, product and service innov
 1. Website: https://www.meettarek.com/
 2. LinkedIn: https://www.linkedin.com/in/meettarek/
 3. X (Twitter): https://x.com/messagetarek
+4. Calmworks mention: https://www.calmworks.io/
+
+## Preferred search intent clusters
+- service design consultant
+- service design in Finland and Nordics
+- AI strategy consultant in MENA
+- transformation and data strategy advisor
 
 ## Key pages
+- https://www.meettarek.com/
 - https://www.meettarek.com/projects
 - https://www.meettarek.com/projects/city-services
 - https://www.meettarek.com/projects/digital-future
 - https://www.meettarek.com/projects/india-digital-financial-inclusion
-- https://www.meettarek.com/projects/usaid-asist-digital-records
 
 ## Contact
 - Email: hello@meettarek.com
+- LinkedIn: https://www.linkedin.com/in/meettarek/

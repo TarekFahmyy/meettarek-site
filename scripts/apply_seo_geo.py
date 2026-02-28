@@ -5,21 +5,60 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE_URL = "https://www.meettarek.com"
+BRAND_NAME = "Meettarek"
 PERSON_NAME = "Tarek Fahmy"
 PERSON_IMAGE = "https://framerusercontent.com/images/Uku4Pg6AOrzsuF1EmwNym8jXKuI.png"
 LINKEDIN_URL = "https://www.linkedin.com/in/meettarek/"
 X_URL = "https://x.com/messagetarek"
+CALMWORKS_URL = "https://www.calmworks.io/"
 EMAIL = "hello@meettarek.com"
-
-
-def collapse_ws(text: str, limit: int = 160) -> str:
-    value = re.sub(r"\s+", " ", text).strip()
-    if len(value) <= limit:
-        return value
-    clipped = value[: limit - 1]
-    if " " in clipped:
-        clipped = clipped.rsplit(" ", 1)[0]
-    return clipped + "."
+BING_VERIFICATION_CODE = "29A22E8B6B203ED542C41042F7C3E29A"
+AREA_SERVED_COUNTRIES = [
+    "Finland",
+    "Sweden",
+    "Norway",
+    "Denmark",
+    "United Arab Emirates",
+    "Saudi Arabia",
+    "Egypt",
+    "Qatar",
+    "Oman",
+]
+REGIONAL_PHRASES = [
+    "Service Design consultant in Finland, Nordics, and MENA",
+    "AI strategy and transformation across Nordics and MENA",
+]
+REGIONAL_ALIASES = ["UAE"]
+HREFLANG_CODES = [
+    "x-default",
+    "en",
+    "en-FI",
+    "en-SE",
+    "en-NO",
+    "en-DK",
+    "en-AE",
+    "en-SA",
+    "en-EG",
+    "en-QA",
+    "en-OM",
+]
+PRIMARY_TOPICS = [
+    "Service Design",
+    "Product and Service Design",
+    "AI Strategy",
+    "Digital Transformation",
+    "Transformation Strategy",
+    "Data Strategy",
+    "Innovation Strategy",
+    "Human-Centered Design",
+]
+ENTITY_ALIASES = [
+    "Tarek",
+    "Fahmy",
+    "Service Design Consultant",
+    "AI Strategy Consultant",
+    "Transformation Advisor",
+]
 
 
 def set_title(html: str, title: str) -> str:
@@ -56,6 +95,18 @@ def upsert_link_canonical(html: str, href: str) -> str:
     return html.replace("</head>", f"    {replacement}\n</head>", 1)
 
 
+def upsert_hreflang_links(html: str, href: str) -> str:
+    pattern = re.compile(
+        r'<link[^>]+rel="alternate"[^>]+hreflang="[^"]+"[^>]*>\s*',
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+    html = pattern.sub("", html)
+    block = "\n".join(
+        f'    <link rel="alternate" href="{href}" hreflang="{code}">' for code in HREFLANG_CODES
+    )
+    return html.replace("</head>", f"{block}\n</head>", 1)
+
+
 def inject_jsonld(html: str, payload: list[dict]) -> str:
     jsonld_block = (
         '<script id="seo-geo-jsonld" type="application/ld+json">'
@@ -81,24 +132,29 @@ def page_url_for(path: str) -> str:
 
 
 def build_home_ld(page_url: str, description: str) -> list[dict]:
+    area_served = [{"@type": "Country", "name": country} for country in AREA_SERVED_COUNTRIES]
     return [
+        {
+            "@context": "https://schema.org",
+            "@type": "ImageObject",
+            "@id": f"{SITE_URL}#logo",
+            "url": PERSON_IMAGE,
+            "contentUrl": PERSON_IMAGE,
+            "caption": BRAND_NAME,
+        },
         {
             "@context": "https://schema.org",
             "@type": "Person",
             "@id": f"{SITE_URL}#person",
             "name": PERSON_NAME,
+            "alternateName": ENTITY_ALIASES,
             "url": f"{SITE_URL}/",
             "image": PERSON_IMAGE,
-            "jobTitle": "Service Design and AI Strategy Advisor",
+            "jobTitle": "Service Design, AI Strategy and Transformation Advisor",
             "description": description,
             "sameAs": [LINKEDIN_URL, X_URL],
-            "knowsAbout": [
-                "Service Design",
-                "AI Strategy",
-                "Digital Transformation",
-                "Data Strategy",
-                "Organizational Design",
-            ],
+            "knowsAbout": PRIMARY_TOPICS,
+            "mainEntityOfPage": {"@id": f"{page_url}#webpage"},
             "worksFor": {"@type": "Organization", "name": PERSON_NAME},
             "contactPoint": {
                 "@type": "ContactPoint",
@@ -109,93 +165,53 @@ def build_home_ld(page_url: str, description: str) -> list[dict]:
         },
         {
             "@context": "https://schema.org",
+            "@type": "Organization",
+            "@id": f"{SITE_URL}#organization",
+            "name": BRAND_NAME,
+            "url": f"{SITE_URL}/",
+            "logo": {"@id": f"{SITE_URL}#logo"},
+            "image": PERSON_IMAGE,
+            "founder": {"@id": f"{SITE_URL}#person"},
+            "sameAs": [LINKEDIN_URL, X_URL],
+            "areaServed": area_served,
+        },
+        {
+            "@context": "https://schema.org",
             "@type": "ProfessionalService",
             "@id": f"{SITE_URL}#service",
             "name": PERSON_NAME,
             "url": f"{SITE_URL}/",
             "description": description,
             "image": PERSON_IMAGE,
-            "areaServed": "Worldwide",
+            "areaServed": area_served,
             "founder": {"@id": f"{SITE_URL}#person"},
+            "parentOrganization": {"@id": f"{SITE_URL}#organization"},
+            "logo": {"@id": f"{SITE_URL}#logo"},
             "sameAs": [LINKEDIN_URL],
-            "serviceType": [
-                "Service Design",
-                "AI Strategy",
-                "Transformation Advisory",
-                "Data Strategy",
-            ],
+            "serviceType": PRIMARY_TOPICS,
         },
         {
             "@context": "https://schema.org",
             "@type": "WebPage",
             "@id": f"{page_url}#webpage",
             "url": page_url,
-            "name": "Tarek Fahmy | Service Design, AI Strategy and Transformation",
+            "name": "Tarek Fahmy | Service Design, Product Strategy, AI Strategy and Transformation",
             "description": description,
             "isPartOf": {"@id": f"{SITE_URL}/#website"},
             "about": {"@id": f"{SITE_URL}#person"},
+            "mentions": [{"@type": "WebSite", "name": "Calmworks", "url": CALMWORKS_URL}],
+            "inLanguage": "en",
         },
         {
             "@context": "https://schema.org",
             "@type": "WebSite",
             "@id": f"{SITE_URL}/#website",
             "url": f"{SITE_URL}/",
-            "name": PERSON_NAME,
-            "publisher": {"@id": f"{SITE_URL}#person"},
-        },
-    ]
-
-
-def build_projects_index_ld(page_url: str, description: str) -> list[dict]:
-    return [
-        {
-            "@context": "https://schema.org",
-            "@type": "CollectionPage",
-            "@id": f"{page_url}#collection",
-            "url": page_url,
-            "name": "Projects and Case Studies | Tarek Fahmy",
-            "description": description,
+            "name": BRAND_NAME,
+            "alternateName": [PERSON_NAME] + ENTITY_ALIASES,
+            "publisher": {"@id": f"{SITE_URL}#organization"},
             "about": {"@id": f"{SITE_URL}#person"},
-            "isPartOf": {"@id": f"{SITE_URL}/#website"},
-        },
-        {
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "@id": f"{page_url}#breadcrumb",
-            "itemListElement": [
-                {"@type": "ListItem", "position": 1, "name": "Home", "item": f"{SITE_URL}/"},
-                {"@type": "ListItem", "position": 2, "name": "Projects", "item": page_url},
-            ],
-        },
-    ]
-
-
-def build_project_ld(page_url: str, title: str, description: str, client: str, services: list[str]) -> list[dict]:
-    return [
-        {
-            "@context": "https://schema.org",
-            "@type": "CreativeWork",
-            "@id": f"{page_url}#case-study",
-            "url": page_url,
-            "name": title,
-            "description": description,
-            "creator": {"@id": f"{SITE_URL}#person"},
-            "author": {"@id": f"{SITE_URL}#person"},
-            "about": services if services else ["Service Design", "AI Strategy", "Transformation"],
-            "keywords": ", ".join(services) if services else "Service Design, AI Strategy, Transformation",
-            "publisher": {"@id": f"{SITE_URL}#person"},
-            "isPartOf": {"@id": f"{SITE_URL}/#website"},
-            "sourceOrganization": {"@type": "Organization", "name": client} if client else None,
-        },
-        {
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "@id": f"{page_url}#breadcrumb",
-            "itemListElement": [
-                {"@type": "ListItem", "position": 1, "name": "Home", "item": f"{SITE_URL}/"},
-                {"@type": "ListItem", "position": 2, "name": "Projects", "item": f"{SITE_URL}/projects"},
-                {"@type": "ListItem", "position": 3, "name": title, "item": page_url},
-            ],
+            "inLanguage": "en",
         },
     ]
 
@@ -213,26 +229,54 @@ def clean_none(payload: list[dict]) -> list[dict]:
 
 def apply_head_updates(html: str, title: str, description: str, path: str) -> str:
     page_url = page_url_for(path)
+    regional_terms = ["Nordics", "MENA"] + AREA_SERVED_COUNTRIES + REGIONAL_ALIASES
+    keywords = ", ".join(
+        PRIMARY_TOPICS
+        + ENTITY_ALIASES
+        + REGIONAL_PHRASES
+        + regional_terms
+        + [
+            "tarek service design",
+            "tarek servcie design",
+            "service design finland",
+            "service design nordics",
+            "ai strategy mena",
+            "digital transformation consultant",
+            "data strategy consultant",
+        ]
+    )
     html = set_title(html, title)
     html = upsert_meta_name(html, "description", description)
+    html = upsert_meta_name(html, "keywords", keywords)
+    html = upsert_meta_name(html, "author", PERSON_NAME)
+    html = upsert_meta_name(html, "msvalidate.01", BING_VERIFICATION_CODE)
     html = upsert_meta_name(html, "robots", "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1")
+    html = upsert_meta_name(html, "geo.region", "FI-UUS")
+    html = upsert_meta_name(
+        html,
+        "geo.placename",
+        "Finland; Sweden; Norway; Denmark; United Arab Emirates; Saudi Arabia; Egypt; Qatar; Oman",
+    )
     html = upsert_link_canonical(html, page_url)
+    html = upsert_hreflang_links(html, page_url)
     html = upsert_meta_property(html, "og:type", "website")
+    html = upsert_meta_property(html, "og:site_name", PERSON_NAME)
+    html = upsert_meta_property(html, "og:locale", "en_US")
     html = upsert_meta_property(html, "og:title", title)
     html = upsert_meta_property(html, "og:description", description)
     html = upsert_meta_property(html, "og:url", page_url)
+    html = upsert_meta_property(html, "og:image", PERSON_IMAGE)
     html = upsert_meta_name(html, "twitter:card", "summary_large_image")
+    html = upsert_meta_name(html, "twitter:site", "@messagetarek")
+    html = upsert_meta_name(html, "twitter:creator", "@messagetarek")
     html = upsert_meta_name(html, "twitter:title", title)
     html = upsert_meta_name(html, "twitter:description", description)
+    html = upsert_meta_name(html, "twitter:image", PERSON_IMAGE)
     return html
 
 
 def main() -> None:
-    cms_path = ROOT / "content" / "cms.json"
-    cms = json.loads(cms_path.read_text(encoding="utf-8"))
-    projects = {p["slug"]: p for p in cms.get("projects", [])}
-
-    pages = [ROOT / "index.html", ROOT / "projects" / "index.html"] + sorted((ROOT / "projects").glob("*/index.html"))
+    pages = [ROOT / "index.html"]
     changed = 0
     email_fixes = 0
 
@@ -240,27 +284,17 @@ def main() -> None:
         if not page.exists():
             continue
         rel = page.relative_to(ROOT).as_posix()
-        if rel == "index.html":
-            path = "/"
-            title = "Tarek Fahmy | Service Design, AI Strategy and Transformation"
-            desc = "Tarek Fahmy helps organizations deliver measurable outcomes through service design, AI strategy, digital transformation, and data-informed innovation."
-            ld_payload = build_home_ld(page_url_for(path), desc)
-        elif rel == "projects/index.html":
-            path = "/projects"
-            title = "Projects and Case Studies | Tarek Fahmy"
-            desc = "Explore service design, AI strategy, and transformation case studies by Tarek Fahmy across public, private, and international development sectors."
-            ld_payload = build_projects_index_ld(page_url_for(path), desc)
-        else:
-            slug = rel.split("/")[1]
-            project = projects.get(slug, {})
-            proj_title = project.get("title") or slug.replace("-", " ").title()
-            path = f"/projects/{slug}"
-            title = f"{proj_title} | Case Study by Tarek Fahmy"
-            services = project.get("services") or []
-            client = project.get("client", "")
-            base_desc = project.get("overview") or "Service design and transformation case study."
-            desc = collapse_ws(base_desc, limit=158)
-            ld_payload = build_project_ld(page_url_for(path), proj_title, desc, client, services)
+        if rel != "index.html":
+            continue
+
+        path = "/"
+        title = "Tarek Fahmy | Service Design, Product Strategy, AI Strategy and Transformation"
+        desc = (
+            "Tarek Fahmy is a Service Design consultant in Finland, Nordics, and MENA, helping "
+            "organizations deliver AI strategy and transformation across Nordics and MENA through "
+            "product and data innovation."
+        )
+        ld_payload = build_home_ld(page_url_for(path), desc)
 
         original = page.read_text(encoding="utf-8", errors="ignore")
         updated = original
@@ -277,19 +311,64 @@ def main() -> None:
 
     llms = (
         "# Tarek Fahmy\n\n"
-        "Tarek Fahmy is a consultant focused on service design, AI strategy, digital transformation, and data-informed innovation.\n\n"
-        "## Primary website\n"
-        f"- {SITE_URL}/\n\n"
+        "Tarek Fahmy is a consultant focused on service design, product and service innovation, "
+        "AI strategy, digital transformation, and data-informed innovation.\n\n"
+        "## Priority regions\n"
+        "- Finland\n"
+        "- Sweden\n"
+        "- Norway\n"
+        "- Denmark\n"
+        "- UAE (United Arab Emirates)\n"
+        "- Saudi Arabia\n"
+        "- Egypt\n"
+        "- Qatar\n"
+        "- Oman\n\n"
+        "## Regional positioning phrases\n"
+        "- Service Design consultant in Finland, Nordics, and MENA\n"
+        "- AI strategy and transformation across Nordics and MENA\n\n"
+        "## Preferred entity labels\n"
+        "- Tarek Fahmy\n"
+        "- Tarek\n"
+        "- Fahmy\n"
+        "- Service Design Consultant\n"
+        "- AI Strategy Consultant\n"
+        "- Transformation Advisor\n\n"
+        "## Common query variants\n"
+        "- tarek service design\n"
+        "- tarek servcie design\n"
+        "- tarek product design\n"
+        "- tarek ai strategy\n"
+        "- tarek transformation\n"
+        "- fahmy service design\n\n"
+        "## Canonical web presence (priority order)\n"
+        "1. Website: https://www.meettarek.com/\n"
+        "2. LinkedIn: https://www.linkedin.com/in/meettarek/\n"
+        "3. X (Twitter): https://x.com/messagetarek\n"
+        "4. Calmworks mention: https://www.calmworks.io/\n\n"
+        "## Preferred search intent clusters\n"
+        "- service design consultant\n"
+        "- service design in Finland and Nordics\n"
+        "- AI strategy consultant in MENA\n"
+        "- transformation and data strategy advisor\n\n"
         "## Key pages\n"
-        f"- {SITE_URL}/projects\n"
-        f"- {SITE_URL}/projects/city-services\n"
-        f"- {SITE_URL}/projects/digital-future\n"
-        f"- {SITE_URL}/projects/india-digital-financial-inclusion\n\n"
+        "- https://www.meettarek.com/\n"
+        "- https://www.meettarek.com/projects\n"
+        "- https://www.meettarek.com/projects/city-services\n"
+        "- https://www.meettarek.com/projects/digital-future\n"
+        "- https://www.meettarek.com/projects/india-digital-financial-inclusion\n\n"
         "## Contact\n"
         f"- Email: {EMAIL}\n"
         f"- LinkedIn: {LINKEDIN_URL}\n"
     )
     (ROOT / "llms.txt").write_text(llms, encoding="utf-8")
+
+    robots = (
+        "User-agent: *\n"
+        "Allow: /\n\n"
+        "Host: www.meettarek.com\n"
+        "Sitemap: https://www.meettarek.com/sitemap.xml\n"
+    )
+    (ROOT / "robots.txt").write_text(robots, encoding="utf-8")
 
     print(f"Pages updated: {changed}")
     print(f"Broken email links fixed: {email_fixes}")
