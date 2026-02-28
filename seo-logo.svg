@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Meettarek logo">
+  <g fill="none" stroke="#fff" stroke-linecap="round" stroke-width="10">
+    <circle cx="256" cy="256" r="108" fill="#ff5a00"/>
+    <line x1="256" y1="44" x2="256" y2="110" stroke="#ff5a00"/>
+    <line x1="256" y1="402" x2="256" y2="468" stroke="#ff5a00"/>
+    <line x1="44" y1="256" x2="110" y2="256" stroke="#ff5a00"/>
+    <line x1="402" y1="256" x2="468" y2="256" stroke="#ff5a00"/>
+    <line x1="106" y1="106" x2="152" y2="152" stroke="#ff5a00"/>
+    <line x1="360" y1="360" x2="406" y2="406" stroke="#ff5a00"/>
+    <line x1="360" y1="152" x2="406" y2="106" stroke="#ff5a00"/>
+    <line x1="106" y1="406" x2="152" y2="360" stroke="#ff5a00"/>
+    <line x1="190" y1="70" x2="220" y2="122" stroke="#ff5a00"/>
+    <line x1="292" y1="390" x2="322" y2="442" stroke="#ff5a00"/>
+    <line x1="390" y1="220" x2="442" y2="190" stroke="#ff5a00"/>
+    <line x1="70" y1="322" x2="122" y2="292" stroke="#ff5a00"/>
+    <line x1="70" y1="190" x2="122" y2="220" stroke="#ff5a00"/>
+    <line x1="390" y1="292" x2="442" y2="322" stroke="#ff5a00"/>
+    <line x1="190" y1="442" x2="220" y2="390" stroke="#ff5a00"/>
+    <line x1="292" y1="122" x2="322" y2="70" stroke="#ff5a00"/>
+  </g>
+</svg>
